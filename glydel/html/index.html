@@ -1,0 +1,135 @@
+<!doctype html>
+<html ng-app="glydel-portfolio">
+  <head>
+      <meta charset="utf-8">
+      <title>myStay - simplified hotel browsing!</title>
+      <script>document.write('<base href="' + document.location + '" />');</script>
+      <link rel="stylesheet" href="css/bootstrap.css">
+      <link rel="stylesheet" href="css/font-awesome.min.css">
+      <script src="js/jquery.js"></script>
+      <script src="js/bootstrap.js"></script>
+      <script src="js/angular.js"></script>
+      <script src="portfolio.js"></script>
+  </head>
+  <body>
+    <div class="container" ng-controller="PortfolioCtrl">
+      <div class="page-header">
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+                <h1> <[pageHeader]> </h1>
+            </div>
+            <div class="col-xs-6 col-md-4 text-right">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+                <h3> <[pageTagline]> </h3>
+            </div>
+            <div class="col-xs-6 col-md-4 text-right">
+                <b> Total Hotel(s): </b> <[hotelCount]>
+                <br/> <b> API Hit(s): </b> <[apiHits]>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 col-md-4"> <img ng-src="<[current.image]>"> </img> </div>
+        <div class="col-xs-6 col-md-4 text-center"> <span style="font-size: 18px;"> <b> <[current.name]> </b> </span> </div>
+        <div class="col-xs-6 col-md-4">
+            <table class="table">
+                <tr>
+                    <td>
+                       <i class="fa fa-map-marker"> </i>
+                       <b> <[current.city]> </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fa fa-clock-o"></i>
+                        <b> Check-in hours </b>
+                        <span style="float:right;"> <[current.check_in_time]> </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fa fa-wifi"></i>
+                        <b> Wifi </b>  <span style="float:right;"> <[current.wifi]> </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="fa fa-credit-card"></i>
+                        <b> Cash or credit card </b>
+                    </td>
+                </tr>
+            </table>
+        </div>
+      </div>
+      <div class="row">
+      </div>
+      <div class="row">
+        <table class="table table-bordered">
+            <tr> <td> 
+                <[current.description]>
+            </td> </tr>
+        </table>
+      </div>
+      <div class="row">
+        <div class="col-xs-9 col-md-6">
+            <table class="table table-bordered"> 
+                <tr ng-repeat="room in current.rooms">
+                    <td> 
+                        <[room.type]>
+                        <span style="float:right;"> <[room.price]> </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-xs-9 col-md-6">
+            <table class="table table-bordered">
+                <tr>
+                    <td>
+                        <b> Distance from Airport </b>
+                        <span style="float:right;"> <[current.distance_airport]> </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b> Bar </b>
+                        <span style="float:right;"> <[current.bar_time]> </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b> Air Conditioner </b>
+                        <span style="float:right;"> <[current.ac]> </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b> Gym </b>
+                        <span style="float:right;"> <[current.gym]> </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b> Pool </b>
+                        <span style="float:right;"> <[current.pool]> </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="text-right">
+            Download: <a target="_self" ng-click="downloadFile();"> <i class="fa fa-download"></i> </a>
+        </div>
+      </div>
+      <table class="table table-bordered">
+        <tr><td> <a ng-show="previous_show" ng-click="decreaseIndex();" style="cursor: pointer;"> <[previous.name]> </td>
+        <td class="hidden-*-inline"> <[current.name]> </td>
+        <td> <a ng-show="next_show" ng-click="increaseIndex();" style="cursor: pointer"> <[next.name]> </a> </td> </tr>
+      </table>
+    </div>
+    
+  </body>
+</html>
