@@ -1,0 +1,17 @@
+{
+  "name": "gainsight-app",
+  "version": "0.0.1",
+  "description": "A simple Node.js app using Express 4",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "~4.9.x",
+    "mustache-express": "*"
+  },
+  "engines": {
+    "node": "0.12.2"
+  },
+  "license": "MIT"
+}

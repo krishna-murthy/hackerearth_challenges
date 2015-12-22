@@ -1,0 +1,23 @@
+.imageClass {
+    height: auto; 
+    width: auto; 
+    max-width: 300px; 
+    max-height: 300px;
+    cursor: pointer;
+}
+.like {
+    position: absolute;
+    top: 0px;
+    left: -10px;
+    cursor: pointer;
+}
+.share {
+    position: absolute;
+    top: 0px;
+    right: 50px;
+}
+.download {
+    position: absolute;
+    bottom: 0px;
+    right: 50px;
+}

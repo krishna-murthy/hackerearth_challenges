@@ -1,0 +1,106 @@
+<!doctype html>
+<html ng-app="gainsight-imaging">
+    <head>
+        <meta charset="utf-8">
+        <title>Gainsight Image Looper!</title>
+        <script>document.write('<base href="' + document.location + '" />');</script>
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/img.css">
+        <link rel="stylesheet" href="css/angular-chart.css">
+        <link rel="stylesheet" href="css/angular-socialshare.min.css">
+        <link rel="stylesheet" href="css/ngProgress.css">
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/angular.js"></script>
+        <script src="js/Chart.min.js"></script>
+        <script src="js/ui-bootstrap-tpls-0.12.1.min.js"></script>
+        <script src="js/angular-chart.min.js"></script>
+        <script src="js/ng-infinite-scroll.min.js"></script>
+        <script src="js/angular-socialshare.min.js"></script>
+        <script src="js/ngprogress.min.js"></script>
+        <script src="imageshare.js"></script>
+        <script src="http://platform.twitter.com/widgets.js"></script>
+    </head>
+    <body>
+        <div class="container" ng-controller="ImagingCtrl">
+            <script type="text/ng-template" id="myModalContent.html">
+                <div class="modal-header">
+                    <h3 class="modal-title">Demographic of %viewers</h3>
+                </div>
+                <div class="modal-body">
+                    <canvas id="doughnut" class="chart chart-doughnut" data="data" labels="labels" legend="true">
+                    </canvas>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" ng-click="ok()">OK</button>
+                </div>
+            </script>
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-xs-12 col-md-8">
+                        <h1> <[pageHeader]> </h1>
+                    </div>
+                    <div class="col-xs-6 col-md-4 text-right">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-8">
+                        <h3> <[pageTagline]> </h3>
+                    </div>
+                    <div class="col-xs-6 col-md-4 text-right">
+                        <b> Infinite Scroll </b>
+                        <div class="btn-group">
+                            <label class="btn btn-primary" ng-model="infiniteScroll" btn-radio="1">On</label>
+                            <label class="btn btn-primary" ng-model="infiniteScroll" btn-radio="0">Off</label>
+                        </div>
+                        <br/> <b> Total Like(s): </b> <[totalLikes]>
+                    </div>
+                </div>
+            </div>
+            <div data-ng-include="selectedTemplate"></div>
+            <script type="text/ng-template" id="withoutScroll.html">
+                <div class="row" ng-repeat="image in imageList">
+                    <div ng-repeat="img in image">
+                        <div class="col-xs-6 col-md-4">
+                            <i ng-click="likeImage(img)" class="fa fa-thumbs-o-up fa-4 like"></i>
+                            <img class="imageClass" ng-click="open(img)" ng-src="<[img.url]>" imageonload> </img>
+                            <a twitter class="share" data-lang="en" data-count='horizontal' data-url='http://google.com' data-via='notsosleepy' data-size="medium">
+                                <i class="fa fa-share"> </i>
+                            </a>
+                            <a href="<[img.url]>" class="download" download="<[img.name]>">
+                                <i class="fa fa-download"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-bordered">
+                    <tr><td> <a ng-show="previous_show" ng-click="decreaseIndex();" style="cursor: pointer;"> Previous </td>
+                    <td class="hidden-*-inline"> Current </td>
+                    <td> <a ng-show="next_show" ng-click="increaseIndex();" style="cursor: pointer"> Next </a> </td> </tr>
+                </table>
+            </script>
+            <script type="text/ng-template" id="withScroll.html">
+                <div infinite-scroll="myPagingFunction()" infinite-scroll-distance='1'></div>
+                    <div class="row" ng-repeat="image in imageList">
+                        <div ng-repeat="img in image">
+                            <div class="col-xs-6 col-md-4">
+                                <i ng-click="likeImage(img)" class="fa fa-thumbs-o-up fa-4 like"></i>
+                                <img class="imageClass" ng-click="open(img)" ng-src="<[img.url]>"> </img>
+                                <a twitter class="share" data-lang="en" data-count='horizontal' data-url='http://google.com' data-via='notsosleepy' data-size="medium">
+                                    <i class="fa fa-share share"> </i>
+                                </a>
+                                <a href="<[img.url]>" class="download" download="<[img.name]>">
+                                    <i class="fa fa-download"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div style='clear: both;'></div>
+                    </div>
+                    <div style='clear: both;'></div>
+                </div>
+            </script>
+            <div style='clear: both;'></div>
+        </div>
+    </body>
+</html>
